@@ -1,4 +1,6 @@
 import pygame
+pygame.init()
+font = pygame.font.Font(None, 36)
 import sys
 from constants import *
 from player import Player
@@ -29,6 +31,8 @@ def main():
 
     dt = 0
 
+    score = 0
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,11 +50,15 @@ def main():
                 if shot.collides_with(asteroid):
                     asteroid.split()
                     shot.kill()
+                    score += 10
 
         screen.fill("black")
 
         for obj in drawable:
             obj.draw(screen)
+        
+        score_surface = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_surface, (80, 80))
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
