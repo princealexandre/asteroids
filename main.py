@@ -42,7 +42,7 @@ def main():
 
         for asteroid in asteroids:
             if player.collides_with(asteroid):
-                print ("Game over!")
+                print (f"Game over! Your final score is {score}.")
                 sys.exit()
 
         for asteroid in asteroids.copy():
@@ -52,7 +52,7 @@ def main():
                     shot.kill()
                     score += 10
 
-        screen.fill("black")
+        screen.fill((0,38,38))
 
         for obj in drawable:
             obj.draw(screen)
